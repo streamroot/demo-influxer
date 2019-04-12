@@ -1,0 +1,43 @@
+version: "3.4"
+
+services:
+
+  influxdb:
+    image: influxdb:1.7
+    environment:
+      INFLUXDB_DB: "data"
+    ports:
+    - 8086:8086
+
+  netcat:
+    image: subfuzion/netcat
+    ports:
+    - 9000:9000
+    entrypoint: tail -f /dev/null
+
+  jobmanager:
+    image: flink:1.7.2-scala_2.11
+    expose:
+      - 6123
+    ports:
+      - 8081:8081
+    command: jobmanager
+    environment:
+      - JOB_MANAGER_RPC_ADDRESS=jobmanager
+    volumes:
+      - ./:/influxer
+
+  taskmanager:
+    image: flink:1.7.2-scala_2.11
+    expose:
+      - 6121
+      - 6122
+    depends_on:
+      - jobmanager
+    command: taskmanager
+    links:
+      - jobmanager:jobmanager
+      - netcat:netcat
+      - influxdb:influxdb
+    environment:
+      - JOB_MANAGER_RPC_ADDRESS=jobmanager
