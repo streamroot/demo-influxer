@@ -23,9 +23,9 @@ docker-compose exec jobmanager \
 bash -c "flink run -d /influxer/target/influxer-standalone.jar 9000"
 ```
 
-You can check its status in the [Flink UI](http://localhost:8081).
+You can check the job status in the [Flink UI](http://localhost:8081).
 
-Once the job is running, type some numbers from the netcat server terminal:
+Once it's running, type some numbers from the netcat server terminal:
 
 ```
 22
@@ -37,7 +37,7 @@ Finally, check the resulting 10-second windowed sums in InfluxDB:
 
 ```sh
 docker-compose exec influxdb \
-influx -database data -execute 'select * from record``s'
+influx -database data -execute 'select * from records'
 ```
 
 Stop the environment:
