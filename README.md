@@ -1,5 +1,8 @@
 # influxer
 
+A demo of exactly-once processing with Flink and InfluxDB.
+More details in [this blog post](https://medium.com/@lerouxrgd/achieving-exactly-once-processing-with-flink-and-influxdb-3b876915f8cd).
+
 ## Usage
 
 Startup the environment:
