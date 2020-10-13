@@ -18,7 +18,7 @@
         <failsafe.version>2.0.1</failsafe.version>
         <slf4jlog4j12.version>1.7.26</slf4jlog4j12.version>
         <!-- Test dependencies -->
-        <junit.version>4.12</junit.version>
+        <junit.version>4.13.1</junit.version>
         <netcrusher.version>0.10</netcrusher.version>
         <!-- Maven plugins -->
         <compiler.version>3.7.0</compiler.version>
